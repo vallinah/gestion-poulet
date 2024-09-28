@@ -42,3 +42,12 @@ CREATE TABLE dépense(
     id_charge int REFERENCES charge(id),
     quantité DECIMAL(10, 2)
 );
+
+CREATE TABLE poulet (
+    id SERIAL PRIMARY KEY,
+    poids_initial DECIMAL(5, 2) NOT NULL,
+    poids_final DECIMAL(10, 2)  ,
+    poids_grow DECIMAL(10, 2),
+    prix_de_vente DECIMAL(10, 2),
+    cout  DECIMAL(10, 2)  
+);
