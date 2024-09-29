@@ -38,8 +38,10 @@ CREATE TABLE poulet (
     poids_final DECIMAL(10, 2),
     poids_grow DECIMAL(10, 2),
     prix_de_vente DECIMAL(10, 2),
-    cout  DECIMAL(10, 2)  
+    cout DECIMAL(10, 2),
+    id_elevage INT REFERENCES elevage(id) -- Clé étrangère vers la table elevage
 );
+
 
 CREATE TABLE charge(
     id serial PRIMARY KEY,
@@ -52,4 +54,10 @@ CREATE TABLE charge(
     pourcentage_démarrage DECIMAL(10, 2),
     pourcentage_transition DECIMAL(10, 2),
     pourcentage_finition DECIMAL(10, 2)
+);
+
+CREATE TABLE elevage (
+    id SERIAL PRIMARY KEY,
+    date_debut DATE NOT NULL,
+    dureeCycle INT NOT NULL
 );
