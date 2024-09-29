@@ -105,5 +105,53 @@ public class DepenseDAO {
         }
         return depense;
     }
+
+        // Méthode pour récupérer toutes les dépenses d'un élevage
+        public List<Depense> getDepensesByElevage(int idElevage) {
+            List<Depense> depenses = new ArrayList<>();
+            Connection conn = connexion.getConnection();
+            String sql = "SELECT * FROM dépense d JOIN charge c ON d.id_charge = c.id WHERE c.id_elevage = ?";
+            try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+                stmt.setInt(1, idElevage);
+                ResultSet rs = stmt.executeQuery();
+                while (rs.next()) {
+                    Depense depense = new Depense();
+                    depense.setId(rs.getInt("id"));
+                    depense.setIdCharge(rs.getInt("id_charge"));
+                    depense.setQuantite(rs.getDouble("quantité"));
+                    depenses.add(depense);
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                connexion.deconnexion();
+            }
+            return depenses;
+        }
+    
+        // Méthode pour récupérer les dépenses d'un type spécifique (ex. vitamines, aliments)
+        public List<Depense> getDepensesByChargeType(int idElevage, String typeCharge) {
+            List<Depense> depenses = new ArrayList<>();
+            Connection conn = connexion.getConnection();
+            String sql = "SELECT * FROM dépense d JOIN charge c ON d.id_charge = c.id " +
+                         "JOIN type_charge t ON c.id_type_charge = t.id WHERE t.nom = ? AND c.id_elevage = ?";
+            try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+                stmt.setString(1, typeCharge);
+                stmt.setInt(2, idElevage);
+                ResultSet rs = stmt.executeQuery();
+                while (rs.next()) {
+                    Depense depense = new Depense();
+                    depense.setId(rs.getInt("id"));
+                    depense.setIdCharge(rs.getInt("id_charge"));
+                    depense.setQuantite(rs.getDouble("quantité"));
+                    depenses.add(depense);
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                connexion.deconnexion();
+            }
+            return depenses;
+        }
 }
 
