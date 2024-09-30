@@ -3,7 +3,7 @@
 set "working_dir=."
 set "local=."
 set "webapps=C:\Program Files\Apache Software Foundation\Tomcat 10.1\webapps"
-set "name=bookservlet"
+set "name=gestion-poulet"
 
 if "%working_dir%"=="" (
     echo Le lien vers le répertoire de travail est vide.
