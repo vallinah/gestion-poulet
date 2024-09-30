@@ -3,7 +3,7 @@
             <div class="col-12 grid-margin">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">Insertion Charges</h4>
+                  <h4 class="card-title">Insertion Poulet</h4>
                   <form class="form-sample" action="traitementPoulet" method="post" enctype="multipart/form-data>
                     <p class="card-description">
                       First
