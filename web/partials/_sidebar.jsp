@@ -14,9 +14,9 @@
             </a>
             <div class="collapse" id="form-elements">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"><a class="nav-link" href="/getCharge">Charge</a></li>
-                <li class="nav-item"><a class="nav-link" href="web\pages\forms\insertCout.jsp">Coût</a></li>
-                <li class="nav-item"><a class="nav-link" href="web\pages\forms\insertPoulet.jsp">Poulet</a></li>
+                <li class="nav-item"><a class="nav-link" href="getCharge?action=insert">Charge</a></li>
+                <li class="nav-item"><a class="nav-link" href="pages\forms\insertCout.jsp">Coût</a></li>
+                <li class="nav-item"><a class="nav-link" href="getElevage">Poulet</a></li>
               </ul>
             </div>
           </li>

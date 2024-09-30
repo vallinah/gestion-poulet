@@ -6,6 +6,7 @@ import java.util.List;
 import dao.AnalytiqueDesCoutsDAO;
 import dao.ChargeAnalytiqueDAO;
 import dao.ChargeDAO;
+import dao.ElevageDAO;
 import dao.TypeChargeDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -14,6 +15,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import util.AnalytiqueDesCouts;
 import util.Charge;
 import util.ChargeAnalytique;
+import util.Elevage;
 import util.TypeCharge;
 
 public class GetElevage extends HttpServlet {
@@ -39,5 +41,5 @@ public class GetElevage extends HttpServlet {
             throws ServletException, IOException {
         doGet(request, response);
     }
-    
+
 }
