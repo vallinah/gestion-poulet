@@ -20,7 +20,7 @@ public class PouletDAO {
             stmt.setDouble(3, poulet.getPoidsGrow());
             stmt.setDouble(4, poulet.getPrixDeVente());
             stmt.setDouble(5, poulet.getCout());
-            stmt.setInt(6, poulet.getIdElevage());  // Ajout de l'ID d'élevage
+            stmt.setInt(6, poulet.getIdElevage()); // Ajout de l'ID d'élevage
 
             stmt.executeUpdate();
             System.out.println("Poulet inséré avec succès.");
@@ -41,7 +41,7 @@ public class PouletDAO {
             stmt.setDouble(3, poulet.getPoidsGrow());
             stmt.setDouble(4, poulet.getPrixDeVente());
             stmt.setDouble(5, poulet.getCout());
-            stmt.setInt(6, poulet.getIdElevage());  // Ajout de l'ID d'élevage
+            stmt.setInt(6, poulet.getIdElevage()); // Ajout de l'ID d'élevage
             stmt.setInt(7, poulet.getId());
 
             stmt.executeUpdate();
@@ -74,7 +74,7 @@ public class PouletDAO {
         Connection conn = connexion.getConnection();
         String sql = "SELECT * FROM poulet";
         try (Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)) {
+                ResultSet rs = stmt.executeQuery(sql)) {
             while (rs.next()) {
                 Poulet poulet = new Poulet();
                 poulet.setId(rs.getInt("id"));
@@ -83,7 +83,7 @@ public class PouletDAO {
                 poulet.setPoidsGrow(rs.getDouble("poids_grow"));
                 poulet.setPrixDeVente(rs.getDouble("prix_de_vente"));
                 poulet.setCout(rs.getDouble("cout"));
-                poulet.setIdElevage(rs.getInt("id_elevage"));  // Ajout de l'ID d'élevage
+                poulet.setIdElevage(rs.getInt("id_elevage")); // Ajout de l'ID d'élevage
 
                 poulets.add(poulet);
             }
@@ -111,7 +111,7 @@ public class PouletDAO {
                 poulet.setPoidsGrow(rs.getDouble("poids_grow"));
                 poulet.setPrixDeVente(rs.getDouble("prix_de_vente"));
                 poulet.setCout(rs.getDouble("cout"));
-                poulet.setIdElevage(rs.getInt("id_elevage"));  // Ajout de l'ID d'élevage
+                poulet.setIdElevage(rs.getInt("id_elevage")); // Ajout de l'ID d'élevage
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -121,7 +121,8 @@ public class PouletDAO {
         return poulet;
     }
 
-    // Méthode pour récupérer le nombre total de poulets dans un cycle d'élevage donné
+    // Méthode pour récupérer le nombre total de poulets dans un cycle d'élevage
+    // donné
     public int getNbPoulet(int idElevage) {
         int nbPoulet = 0;
         Connection conn = connexion.getConnection();
@@ -139,6 +140,7 @@ public class PouletDAO {
         }
         return nbPoulet;
     }
+
     public List<Poulet> getPouletsByElevage(int idElevage) {
         List<Poulet> poulets = new ArrayList<>();
         Connection conn = connexion.getConnection();

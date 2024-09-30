@@ -2,6 +2,7 @@ package util;
 
 import dao.*;
 import java.util.List;
+
 public class ElevageService {
 
     private PouletDAO pouletDAO = new PouletDAO();
@@ -65,7 +66,8 @@ public class ElevageService {
         return prixVenteTotal - depenseTotal;
     }
 
-    // Méthode utilitaire pour calculer le total des dépenses à partir d'une liste de dépenses
+    // Méthode utilitaire pour calculer le total des dépenses à partir d'une liste
+    // de dépenses
     private double calculerDepenseTotal(List<Depense> depenses) {
         double total = 0;
         for (Depense depense : depenses) {
@@ -82,8 +84,36 @@ public class ElevageService {
 
     // Fonction pour générer une facture
     public Facture getCompteFacture(int idElevage, double prixVenteKg) {
-        Facture fact=new Facture(idElevage, prixVenteKg);
+        Facture fact = new Facture(idElevage, prixVenteKg);
 
         return fact;
+    }
+
+    public double calculMargeGlobal(int idElevage) {
+        double margeGlobal = 0;
+        Poulet p = new Poulet();
+        double coutFixe = depenseDAO.getTotalAnalytiqueDesCoûts(1, "fixe");
+        double coutVariable = depenseDAO.getTotalAnalytiqueDesCoûts(1, "variable");
+        double chiffreAffaire = p.getChiffreAffaire();
+        margeGlobal = chiffreAffaire - (coutFixe + coutVariable);
+        return margeGlobal;
+    }
+
+    public double calculMargeCouteFixe(int idElevage) {
+        double mcf = 0;
+        Poulet p = new Poulet();
+        double coutFixe = depenseDAO.getTotalAnalytiqueDesCoûts(1, "fixe");
+        double chiffreAffaire = p.getChiffreAffaire();
+        mcf = chiffreAffaire - coutFixe;
+        return mcf;
+    }
+
+    public double calculMargeCouteVariable(int idElevage) {
+        double mcv = 0;
+        Poulet p = new Poulet();
+        double coutVariable = depenseDAO.getTotalAnalytiqueDesCoûts(1, "variable");
+        double chiffreAffaire = p.getChiffreAffaire();
+        mcv = chiffreAffaire - coutVariable;
+        return mcv;
     }
 }

@@ -6,7 +6,6 @@ import java.util.List;
 import connexion.*;
 import util.*;
 
-
 public class DepenseDAO {
 
     private Connexion connexion = new Connexion();
@@ -67,7 +66,7 @@ public class DepenseDAO {
         Connection conn = connexion.getConnection();
         String sql = "SELECT * FROM dépense";
         try (Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)) {
+                ResultSet rs = stmt.executeQuery(sql)) {
             while (rs.next()) {
                 Depense depense = new Depense();
                 depense.setId(rs.getInt("id"));
@@ -106,52 +105,72 @@ public class DepenseDAO {
         return depense;
     }
 
-        // Méthode pour récupérer toutes les dépenses d'un élevage
-        public List<Depense> getDepensesByElevage(int idElevage) {
-            List<Depense> depenses = new ArrayList<>();
-            Connection conn = connexion.getConnection();
-            String sql = "SELECT * FROM dépense d JOIN charge c ON d.id_charge = c.id WHERE c.id_elevage = ?";
-            try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-                stmt.setInt(1, idElevage);
-                ResultSet rs = stmt.executeQuery();
-                while (rs.next()) {
-                    Depense depense = new Depense();
-                    depense.setId(rs.getInt("id"));
-                    depense.setIdCharge(rs.getInt("id_charge"));
-                    depense.setQuantite(rs.getDouble("quantité"));
-                    depenses.add(depense);
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            } finally {
-                connexion.deconnexion();
+    // Méthode pour récupérer toutes les dépenses d'un élevage
+    public List<Depense> getDepensesByElevage(int idElevage) {
+        List<Depense> depenses = new ArrayList<>();
+        Connection conn = connexion.getConnection();
+        String sql = "SELECT * FROM dépense d JOIN charge c ON d.id_charge = c.id WHERE c.id_elevage = ?";
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, idElevage);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                Depense depense = new Depense();
+                depense.setId(rs.getInt("id"));
+                depense.setIdCharge(rs.getInt("id_charge"));
+                depense.setQuantite(rs.getDouble("quantité"));
+                depenses.add(depense);
             }
-            return depenses;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            connexion.deconnexion();
         }
-    
-        // Méthode pour récupérer les dépenses d'un type spécifique (ex. vitamines, aliments)
-        public List<Depense> getDepensesByChargeType(int idElevage, String typeCharge) {
-            List<Depense> depenses = new ArrayList<>();
-            Connection conn = connexion.getConnection();
-            String sql = "SELECT * FROM dépense d JOIN charge c ON d.id_charge = c.id " +
-                         "JOIN type_charge t ON c.id_type_charge = t.id WHERE t.nom = ? AND c.id_elevage = ?";
-            try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-                stmt.setString(1, typeCharge);
-                stmt.setInt(2, idElevage);
-                ResultSet rs = stmt.executeQuery();
-                while (rs.next()) {
-                    Depense depense = new Depense();
-                    depense.setId(rs.getInt("id"));
-                    depense.setIdCharge(rs.getInt("id_charge"));
-                    depense.setQuantite(rs.getDouble("quantité"));
-                    depenses.add(depense);
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            } finally {
-                connexion.deconnexion();
-            }
-            return depenses;
-        }
-}
+        return depenses;
+    }
 
+    // Méthode pour récupérer les dépenses d'un type spécifique (ex. vitamines,
+    // aliments)
+    public List<Depense> getDepensesByChargeType(int idElevage, String typeCharge) {
+        List<Depense> depenses = new ArrayList<>();
+        Connection conn = connexion.getConnection();
+        String sql = "SELECT * FROM dépense d JOIN charge c ON d.id_charge = c.id " +
+                "JOIN type_charge t ON c.id_type_charge = t.id WHERE t.nom = ? AND c.id_elevage = ?";
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, typeCharge);
+            stmt.setInt(2, idElevage);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                Depense depense = new Depense();
+                depense.setId(rs.getInt("id"));
+                depense.setIdCharge(rs.getInt("id_charge"));
+                depense.setQuantite(rs.getDouble("quantité"));
+                depenses.add(depense);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            connexion.deconnexion();
+        }
+        return depenses;
+    }
+
+    public double getTotalAnalytiqueDesCoûts(int idElevage, String analytiqueDesCoûts) {
+        double cout = 0;
+        Connection conn = connexion.getConnection();
+        String sql = "SELECT SUM(c.prix_unitaire*d.quantité) FROM dépense d JOIN charge c ON d.id_charge = c.id " +
+                "JOIN analytique_des_coûts a_c ON c.id_analytique_coût = a_c.id WHERE a_c.nom = ? AND c.id_elevage = ?";
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, analytiqueDesCoûts);
+            stmt.setInt(2, idElevage);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                cout += rs.getDouble(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            connexion.deconnexion();
+        }
+        return cout;
+    }
+}

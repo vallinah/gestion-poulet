@@ -32,6 +32,12 @@ CREATE TABLE dépense(
     quantité DECIMAL(10, 2)
 );
 
+CREATE TABLE elevage (
+    id SERIAL PRIMARY KEY,
+    date_debut DATE NOT NULL,
+    dureeCycle INT NOT NULL
+);
+
 CREATE TABLE poulet (
     id SERIAL PRIMARY KEY,
     poids_initial DECIMAL(5, 2) NOT NULL,
@@ -56,8 +62,3 @@ CREATE TABLE charge(
     pourcentage_finition DECIMAL(10, 2)
 );
 
-CREATE TABLE elevage (
-    id SERIAL PRIMARY KEY,
-    date_debut DATE NOT NULL,
-    dureeCycle INT NOT NULL
-);

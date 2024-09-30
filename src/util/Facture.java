@@ -3,6 +3,7 @@ package util;
 import java.util.List;
 
 import dao.PouletDAO;
+
 public class Facture {
     private int idElevage;
     private double prixVenteKg;
@@ -10,25 +11,27 @@ public class Facture {
     private double depenseTotal;
     private double benefices;
 
-     private PouletDAO pouletDAO;
-        // Méthodes d'accès pour les attributs
-        public double getPrixVenteTotal() {
-            return prixVenteTotal;
-        }
-    
-        public double getDepenseTotal() {
-            return depenseTotal;
-        }
-    
-        public double getBenefices() {
-            return benefices;
-        }
+    private PouletDAO pouletDAO;
 
-        public Facture(int idElevage, double prixVenteKg) {
-            this.idElevage = idElevage;
-            this.prixVenteKg = prixVenteKg;
-            this.pouletDAO = new PouletDAO();
-        }
+    // Méthodes d'accès pour les attributs
+    public double getPrixVenteTotal() {
+        return prixVenteTotal;
+    }
+
+    public double getDepenseTotal() {
+        return depenseTotal;
+    }
+
+    public double getBenefices() {
+        return benefices;
+    }
+
+    public Facture(int idElevage, double prixVenteKg) {
+        this.idElevage = idElevage;
+        this.prixVenteKg = prixVenteKg;
+        this.pouletDAO = new PouletDAO();
+    }
+
     private void calculateTotals() {
         this.prixVenteTotal = calculerPrixVenteTotal();
         this.depenseTotal = calculerDepenseTotal();
