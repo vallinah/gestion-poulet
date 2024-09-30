@@ -1,9 +1,9 @@
 package dao;
 
+import connexion.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import connexion.*;
 import util.*;
 
 public class ChargeDAO {
@@ -18,9 +18,9 @@ public class ChargeDAO {
             stmt.setString(1, charge.getNom());
             stmt.setDouble(2, charge.getPrixUnitaire());
             stmt.setString(3, charge.getUniteOeuvre());
-            stmt.setInt(4, charge.getIdTypeCharge());
-            stmt.setInt(5, charge.getIdChargeAnalytique());
-            stmt.setInt(6, charge.getIdAnalytiqueCout());
+            stmt.setInt(4, charge.getIdTypeCharge().getId());
+            stmt.setInt(5, charge.getIdChargeAnalytique().getId());
+            stmt.setInt(6, charge.getIdAnalytiqueCout().getId());
             stmt.setDouble(7, charge.getPourcentageDemarrage());
             stmt.setDouble(8, charge.getPourcentageTransition());
             stmt.setDouble(9, charge.getPourcentageFinition());
@@ -42,9 +42,9 @@ public class ChargeDAO {
             stmt.setString(1, charge.getNom());
             stmt.setDouble(2, charge.getPrixUnitaire());
             stmt.setString(3, charge.getUniteOeuvre());
-            stmt.setInt(4, charge.getIdTypeCharge());
-            stmt.setInt(5, charge.getIdChargeAnalytique());
-            stmt.setInt(6, charge.getIdAnalytiqueCout());
+            stmt.setInt(4, charge.getIdTypeCharge().getId());
+            stmt.setInt(5, charge.getIdChargeAnalytique().getId());
+            stmt.setInt(6, charge.getIdAnalytiqueCout().getId());
             stmt.setDouble(7, charge.getPourcentageDemarrage());
             stmt.setDouble(8, charge.getPourcentageTransition());
             stmt.setDouble(9, charge.getPourcentageFinition());
@@ -87,9 +87,9 @@ public class ChargeDAO {
                 charge.setNom(rs.getString("nom"));
                 charge.setPrixUnitaire(rs.getDouble("prix_unitaire"));
                 charge.setUniteOeuvre(rs.getString("unité_oeuvre"));
-                charge.setIdTypeCharge(rs.getInt("id_type_charge"));
-                charge.setIdChargeAnalytique(rs.getInt("id_charge_analytique"));
-                charge.setIdAnalytiqueCout(rs.getInt("id_analytique_coût"));
+                charge.setIdTypeCharge(new TypeChargeDAO().getById(rs.getInt("id_type_charge")));
+                charge.setIdChargeAnalytique(new ChargeAnalytiqueDAO().getById(rs.getInt("id_charge_analytique")) );
+                charge.setIdAnalytiqueCout(new AnalytiqueDesCoutsDAO().getById( rs.getInt("id_analytique_coût")));
                 charge.setPourcentageDemarrage(rs.getDouble("pourcentage_démarrage"));
                 charge.setPourcentageTransition(rs.getDouble("pourcentage_transition"));
                 charge.setPourcentageFinition(rs.getDouble("pourcentage_finition"));
@@ -118,9 +118,9 @@ public class ChargeDAO {
                 charge.setNom(rs.getString("nom"));
                 charge.setPrixUnitaire(rs.getDouble("prix_unitaire"));
                 charge.setUniteOeuvre(rs.getString("unité_oeuvre"));
-                charge.setIdTypeCharge(rs.getInt("id_type_charge"));
-                charge.setIdChargeAnalytique(rs.getInt("id_charge_analytique"));
-                charge.setIdAnalytiqueCout(rs.getInt("id_analytique_coût"));
+                charge.setIdTypeCharge(new TypeChargeDAO().getById(rs.getInt("id_type_charge")));
+                charge.setIdChargeAnalytique(new ChargeAnalytiqueDAO().getById(rs.getInt("id_charge_analytique")) );
+                charge.setIdAnalytiqueCout(new AnalytiqueDesCoutsDAO().getById( rs.getInt("id_analytique_coût")));
                 charge.setPourcentageDemarrage(rs.getDouble("pourcentage_démarrage"));
                 charge.setPourcentageTransition(rs.getDouble("pourcentage_transition"));
                 charge.setPourcentageFinition(rs.getDouble("pourcentage_finition"));

@@ -25,5 +25,13 @@
         <url-pattern>/traitementPoulet</url-pattern>
     </servlet-mapping>
 
-
+    <!-- Configuration du servlet pour Book -->
+    <servlet>
+        <servlet-name>TraitementCharge</servlet-name>
+        <servlet-class>controller.TraitementCharge</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TraitementCharge</servlet-name>
+        <url-pattern>/traitementCharge</url-pattern>
+    </servlet-mapping>
 </web-app>

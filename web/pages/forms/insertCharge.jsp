@@ -1,4 +1,6 @@
-
+<%@page import="model.*"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
         <div class="content-wrapper">
           <div class="row">
             <div class="col-12 grid-margin">
@@ -12,37 +14,44 @@
                     <div class="row">
                       <div class="col-md-6">
                         <div class="form-group row">
-                          <label class="col-sm-3 col-form-label">Rubrique</label>
+                          <label class="col-sm-3 col-form-label">Nom</label>
                           <div class="col-sm-9">
-                            <input type="text" name="" class="form-control" />
+                            <input type="text" name="nom" class="form-control" />
                           </div>
                         </div>
                       </div>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Prix Unitaire</label>
+                            <div class="col-sm-9">
+                              <input class="form-control" name="prix_unitaire" type="number"/>
+                            </div>
+                          </div>
+                        </div>
                       <div class="col-md-6">
                         <div class="form-group row">
                           <label class="col-sm-3 col-form-label">Unité d'oeuvre</label>
                           <div class="col-sm-9">
-                            <input type="text" name="" class="form-control" />
+                            <input type="number" name="unité_oeuvre" class="form-control" />
                           </div>
                         </div>
                       </div>
                     </div>
-                    <div class="row">
                       <div class="col-md-6">
                         <div class="form-group row">
-                          <label class="col-sm-3 col-form-label">Prix Unitaire</label>
+                          <label class="col-sm-3 col-form-label">TYpe charge</label>
                           <div class="col-sm-9">
-                            <input class="form-control" name="" type="text"/>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="form-group row">
-                          <label class="col-sm-3 col-form-label">Coûts</label>
-                          <div class="col-sm-9">
-                            <select name="" class="form-control">
+                            <select name="id_type_charge" class="form-control">
+                            <% 
+                                List<Client> clients = (List<Client>) request.getAttribute("clients");
+                                if (clients != null && !clients.isEmpty()) {
+                                    for (int i = 0; i < clients.size(); i++) { 
+                                        Client client = clients.get(i);
+                            %>
                               <option value="">Directe</option>
                               <option value="">Indirecte</option>
+                            <% %>
                             </select>
                           </div>
                         </div>

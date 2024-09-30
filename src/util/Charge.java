@@ -6,9 +6,9 @@ public class Charge {
     private String nom;
     private double prixUnitaire;
     private String uniteOeuvre;
-    private int idTypeCharge;
-    private int idChargeAnalytique;
-    private int idAnalytiqueCout;
+    private TypeCharge idTypeCharge;
+    private ChargeAnalytique idChargeAnalytique;
+    private AnalytiqueDesCouts idAnalytiqueCout;
     private double pourcentageDemarrage;
     private double pourcentageTransition;
     private double pourcentageFinition;
@@ -18,8 +18,8 @@ public class Charge {
     }
 
     // Constructeur avec paramètres
-    public Charge(int id, String nom, double prixUnitaire, String uniteOeuvre, int idTypeCharge, 
-                  int idChargeAnalytique, int idAnalytiqueCout, double pourcentageDemarrage, 
+    public Charge(int id, String nom, double prixUnitaire, String uniteOeuvre, TypeCharge idTypeCharge, 
+    ChargeAnalytique idChargeAnalytique, AnalytiqueDesCouts idAnalytiqueCout, double pourcentageDemarrage, 
                   double pourcentageTransition, double pourcentageFinition) {
         this.id = id;
         this.nom = nom;
@@ -66,29 +66,6 @@ public class Charge {
         this.uniteOeuvre = uniteOeuvre;
     }
 
-    public int getIdTypeCharge() {
-        return idTypeCharge;
-    }
-
-    public void setIdTypeCharge(int idTypeCharge) {
-        this.idTypeCharge = idTypeCharge;
-    }
-
-    public int getIdChargeAnalytique() {
-        return idChargeAnalytique;
-    }
-
-    public void setIdChargeAnalytique(int idChargeAnalytique) {
-        this.idChargeAnalytique = idChargeAnalytique;
-    }
-
-    public int getIdAnalytiqueCout() {
-        return idAnalytiqueCout;
-    }
-
-    public void setIdAnalytiqueCout(int idAnalytiqueCout) {
-        this.idAnalytiqueCout = idAnalytiqueCout;
-    }
 
     public double getPourcentageDemarrage() {
         return pourcentageDemarrage;
@@ -112,6 +89,30 @@ public class Charge {
 
     public void setPourcentageFinition(double pourcentageFinition) {
         this.pourcentageFinition = pourcentageFinition;
+    }
+
+    public TypeCharge getIdTypeCharge() {
+        return idTypeCharge;
+    }
+
+    public void setIdTypeCharge(TypeCharge idTypeCharge) {
+        this.idTypeCharge = idTypeCharge;
+    }
+
+    public ChargeAnalytique getIdChargeAnalytique() {
+        return idChargeAnalytique;
+    }
+
+    public void setIdChargeAnalytique(ChargeAnalytique idChargeAnalytique) {
+        this.idChargeAnalytique = idChargeAnalytique;
+    }
+
+    public AnalytiqueDesCouts getIdAnalytiqueCout() {
+        return idAnalytiqueCout;
+    }
+
+    public void setIdAnalytiqueCout(AnalytiqueDesCouts idAnalytiqueCout) {
+        this.idAnalytiqueCout = idAnalytiqueCout;
     }
 
 }
