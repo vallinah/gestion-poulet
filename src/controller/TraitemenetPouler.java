@@ -28,9 +28,10 @@ public class TraitemenetPouler extends HttpServlet {
             double poidsGrow = Double.parseDouble(request.getParameter("poidsGrow"));
             double prixDeVente = Double.parseDouble(request.getParameter("prixDeVente"));
             double cout = Double.parseDouble(request.getParameter("cout"));
+            int idElevage = Integer.parseInt(request.getParameter("idElevage"));
             PouletDAO dao = new PouletDAO();
 
-            Poulet poulet = new Poulet(0, poidsInitial, poidsFinal, poidsGrow, prixDeVente, cout);
+            Poulet poulet = new Poulet(0, poidsInitial, poidsFinal, poidsGrow, prixDeVente, cout, idElevage);
 
             // Vérification de l'action à effectuer
             if (request.getParameter("pouletId") != null) {

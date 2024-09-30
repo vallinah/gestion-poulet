@@ -9,12 +9,15 @@ public class Poulet {
     private double prixDeVente;
     private double cout;
 
+    private int idElevage;
+
     // Constructeur par défaut
     public Poulet() {
     }
 
     // Constructeur avec paramètres
-    public Poulet(int id, double poidsInitial, double poidsFinal, double poidsGrow, double prixDeVente, double cout) {
+    public Poulet(int id, double poidsInitial, double poidsFinal, double poidsGrow, double prixDeVente, double cout,
+            int idElevage) {
         this.id = id;
         this.poidsInitial = poidsInitial;
         this.poidsFinal = poidsFinal;
@@ -24,6 +27,14 @@ public class Poulet {
     }
 
     // Getters et Setters
+    public int getIdElevage() {
+        return idElevage;
+    }
+
+    public void setIdElevage(int id) {
+        this.idElevage = id;
+    }
+
     public int getId() {
         return id;
     }
@@ -73,4 +84,3 @@ public class Poulet {
     }
 
 }
-
