@@ -28,7 +28,7 @@ public class GetCharge extends HttpServlet {
                         request.setAttribute("chargeAnalytique", chargeAnalytique);
                         request.setAttribute("analytiqueDesCouts", analytiqueDesCouts);
                         request.setAttribute("typeCharge", typeCharge);
-                        request.getRequestDispatcher("insertcharge.jsp").forward(request, response);
+                        request.getRequestDispatcher("pages/form/insertcharge.jsp").forward(request, response);
                         break;
                     case "modifier":
                         int chargeId = Integer.parseInt(request.getParameter("chargeId"));
