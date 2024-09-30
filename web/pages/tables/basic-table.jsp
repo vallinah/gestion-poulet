@@ -48,58 +48,71 @@
                 </div>
 
                 <div class="card-body">
-                  <h4 class="card-title">Hoverable Table</h4>
+                  <h4 class="card-title">Resultats</h4>
                   <p class="card-description">
-                    Add class <code>.table-hover</code>
+                    Aujourd'hui
                   </p>
                   <div class="table-responsive">
-                    <table class="table table-hover">
-                      <thead>
-                        <tr>
-                          <th>Rubrique</th>
-                          <th>Total</th>
-                          <th>Unité d'oeuvre</th>
-                          <th>Nature</th>
-                          <th>Démarrage</th>
-                          <th>Transition</th>
-                          <th>Finition</th>
-                          <th>eqRest</th>
-                          <th>re</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>Jacob</td>
-                          <td>Photoshop</td>
-                          <td class="text-danger"> 28.76% <i class="ti-arrow-down"></i></td>
-                          <td><label class="badge badge-danger">Pending</label></td>
-                        </tr>
-                        <tr>
-                          <td>Messsy</td>
-                          <td>Flash</td>
-                          <td class="text-danger"> 21.06% <i class="ti-arrow-down"></i></td>
-                          <td><label class="badge badge-warning">In progress</label></td>
-                        </tr>
-                        <tr>
-                          <td>John</td>
-                          <td>Premier</td>
-                          <td class="text-danger"> 35.00% <i class="ti-arrow-down"></i></td>
-                          <td><label class="badge badge-info">Fixed</label></td>
-                        </tr>
-                        <tr>
-                          <td>Peter</td>
-                          <td>After effects</td>
-                          <td class="text-success"> 82.00% <i class="ti-arrow-up"></i></td>
-                          <td><label class="badge badge-success">Completed</label></td>
-                        </tr>
-                        <tr>
-                          <td>Dave</td>
-                          <td>53275535</td>
-                          <td class="text-success"> 98.05% <i class="ti-arrow-up"></i></td>
-                          <td><label class="badge badge-warning">In progress</label></td>
-                        </tr>
-                      </tbody>
+                    <h2>Tableau Exemple</h2>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th class="rubriques">RUBRIQUES</th>
+                                <th>TOTAL</th>
+                                <th>UNITE D'OEUVRE</th>
+                                <th>NATURE</th>
+                                <th colspan="3">DEMARRAGE</th>
+                                <th colspan="3">TRANSITION</th>
+                                <th colspan="3">FINITION</th>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th>%</th>
+                                <th>FIXE</th>
+                                <th>VARIABLE</th>
+                                <th>%</th>
+                                <th>FIXE</th>
+                                <th>VARIABLE</th>
+                                <th>%</th>
+                                <th>FIXE</th>
+                                <th>VARIABLE</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="rubriques">ACHAT SEMENCES</td>
+                                <td class="number-format">4321600</td>
+                                <td>KG</td>
+                                <td>V</td>
+                                <td>0.00%</td>
+                                <td></td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td class="rubriques">ACHAT ENGRAIS & ASSIMILES</td>
+                                <td class="number-format">60000000</td>
+                                <td>KG</td>
+                                <td>V</td>
+                                <td>0.00%</td>
+                                <td></td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td class="rubriques">ACHAT EMBALLAGE</td>
+                                <td class="number-format">7796400</td>
+                                <td>NB</td>
+                                <td>V</td>
+                                <td>0.00%</td>
+                                <td></td>
+                                <td>-</td>
+                            </tr>
+                            <!-- Ajoute plus de lignes ici si nécessaire -->
+                        </tbody>
                     </table>
+                    
                   </div>
                 </div>
 

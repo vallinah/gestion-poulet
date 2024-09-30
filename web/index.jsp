@@ -36,7 +36,7 @@
       <%@include file="partials/_sidebar.jsp"%>
       <!-- partial -->
       <div class="main-panel">
-        <%@include file="pages/forms/insertPoulet.jsp"%>
+        <%@include file="pages/tables/basic-table.jsp"%>
         <!-- content-wrapper ends -->
         <!-- partial:partials/_footer.html -->
          <%@include file="partials/_footer.jsp"%>
@@ -63,6 +63,7 @@
   <script src="js/hoverable-collapse.js"></script>
   <script src="js/template.js"></script>
   <script src="js/settings.js"></script>
+  <script src="js/format.js"></script>
   <script src="js/todolist.js"></script>
   <!-- endinject -->
   <!-- Custom js for this page-->
