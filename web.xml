@@ -22,7 +22,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>GetElevage</servlet-name>
-        <url-pattern>/getCharge</url-pattern>
+        <url-pattern>/getElevage</url-pattern>
     </servlet-mapping>
 
        <!-- Configuration du servlet pour Book -->
