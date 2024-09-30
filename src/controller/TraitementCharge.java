@@ -3,12 +3,20 @@ package controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import dao.AnalytiqueDesCoutsDAO;
+import dao.ChargeAnalytiqueDAO;
+import dao.ChargeDAO;
 import dao.PouletDAO;
+import dao.TypeChargeDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import util.AnalytiqueDesCouts;
+import util.Charge;
+import util.ChargeAnalytique;
 import util.Poulet;
+import util.TypeCharge;
 
 public class TraitementCharge {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -21,27 +29,29 @@ public class TraitementCharge {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
         PrintWriter out = response.getWriter();
         try {
-            double poidsInitial = Double.parseDouble(request.getParameter("poidsInitial"));
-            double poidsFinal = Double.parseDouble(request.getParameter("poidsFinal"));
-            double poidsGrow = Double.parseDouble(request.getParameter("poidsGrow"));
-            double prixDeVente = Double.parseDouble(request.getParameter("prixDeVente"));
-            double cout = Double.parseDouble(request.getParameter("cout"));
-            PouletDAO dao = new PouletDAO();
+            String nom = request.getParameter("nom");
+            double prix_unitaire = Double.parseDouble(request.getParameter("prix_unitaire"));
+            String unité_oeuvre = request.getParameter("unité_oeuvre");
+            TypeCharge typeCharge = new TypeChargeDAO().getById(Integer.parseInt(request.getParameter("id_type_charge")));
+            ChargeAnalytique chargeAnalytique =new ChargeAnalytiqueDAO().getById(Integer.parseInt(request.getParameter("id_charge_analytique")));
+            AnalytiqueDesCouts analytiqueDesCouts =new AnalytiqueDesCoutsDAO().getById(Integer.parseInt(request.getParameter("id_analytique_coût")));
+            double pourcentage_démarrage = Double.parseDouble(request.getParameter("pourcentage_démarrage"));
+            double pourcentage_transition = Double.parseDouble(request.getParameter("pourcentage_transition"));
+            double pourcentage_finition = Double.parseDouble(request.getParameter("pourcentage_finition"));
+            ChargeDAO dao = new ChargeDAO();
 
 
-            Poulet poulet = new Poulet(0, poidsInitial, poidsFinal, poidsGrow, prixDeVente, cout);
     
-            // Vérification de l'action à effectuer
-            if (request.getParameter("pouletId") != null) {
-                poulet.setId(Integer.parseInt((String) request.getParameter("pouletId")));
-                dao.update(poulet);
+            Charge charge = new Charge(0, nom, prix_unitaire, unité_oeuvre, typeCharge, chargeAnalytique, analytiqueDesCouts, pourcentage_démarrage, pourcentage_transition, pourcentage_finition);
+            if (request.getParameter("chargeId") != null) {
+                charge.setId(Integer.parseInt((String) request.getParameter("chargeId")));
+                dao.update(charge);
             } else {
-                dao.insert(poulet);
+                dao.insert(charge);
             }
-            request.getRequestDispatcher("insertPoulet.jsp"); 
+            request.getRequestDispatcher("insertCharge.jsp"); 
     
            // Redirection vers la page des clients après traitement
         } catch (Exception e) {

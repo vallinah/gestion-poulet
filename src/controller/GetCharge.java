@@ -22,24 +22,31 @@ public class GetCharge extends HttpServlet {
                 try {
                     if (action != null && !action.isEmpty()) {
                         switch (action) {
-                            case "list":
+                            case "insert":
                                 List<ChargeAnalytique> chargeAnalytique = new ChargeAnalytiqueDAO().getAll();
                                 List<AnalytiqueDesCouts> analytiqueDesCouts = new AnalytiqueDesCoutsDAO().getAll();
                                 List<TypeCharge> typeCharge = new TypeChargeDAO().getAll();
                                 request.setAttribute("chargeAnalytique", chargeAnalytique);
                                 request.setAttribute("analytiqueDesCouts", analytiqueDesCouts);
                                 request.setAttribute("typeCharge", typeCharge);
+                                request.getRequestDispatcher("insertcharge.jsp").forward(request, response); 
                                 break;
                             case "modifier":
                                 int chargeId = Integer.parseInt(request.getParameter("chargeId"));
                                 Charge charge = dao.getById(chargeId);
                                 request.setAttribute("charge", charge);
+                                request.getRequestDispatcher("insertcharge.jsp").forward(request, response); 
+                                break;
+                            case "list":
+                                List<Charge> charge = new ChargeDAO().getAll();
+                                request.setAttribute("charge", charge);
+                                request.getRequestDispatcher("basic-table.jsp").forward(request, response); 
                                 break;
                             default:
                                 response.sendError(HttpServletResponse.SC_BAD_REQUEST);
                                 break;
                         }
-                        request.getRequestDispatcher("insertcharge.jsp").forward(request, response); 
+                        
                     } else {
                         response.sendError(HttpServletResponse.SC_BAD_REQUEST);
                     }

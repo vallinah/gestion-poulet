@@ -1,13 +1,19 @@
 <%@page import="model.*"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
+<% 
+  List<ChargeAnalytique> chargeAnalytiques = (List<ChargeAnalytique>) request.getAttribute("chargeAnalytiques");
+  List<AnalytiqueDesCouts> analytiqueDesCouts = (List<AnalytiqueDesCouts>) request.getAttribute("analytiqueDesCouts");
+  List<TypeCharge> typeCharges = (List<TypeCharge>) request.getAttribute("typeCharges");
+
+%>
         <div class="content-wrapper">
           <div class="row">
             <div class="col-12 grid-margin">
               <div class="card">
                 <div class="card-body">
                   <h4 class="card-title">Insertion Charges</h4>
-                  <form class="form-sample">
+                  <form class="form-sample" action="traitementCharge" method="post" enctype="multipart/form-data">
                     <p class="card-description">
                       First
                     </p>
@@ -33,25 +39,21 @@
                         <div class="form-group row">
                           <label class="col-sm-3 col-form-label">Unité d'oeuvre</label>
                           <div class="col-sm-9">
-                            <input type="number" name="unité_oeuvre" class="form-control" />
+                            <input type="text" name="unité_oeuvre" class="form-control" />
                           </div>
                         </div>
                       </div>
                     </div>
                       <div class="col-md-6">
                         <div class="form-group row">
-                          <label class="col-sm-3 col-form-label">TYpe charge</label>
+                          <label class="col-sm-3 col-form-label">Type charge</label>
                           <div class="col-sm-9">
                             <select name="id_type_charge" class="form-control">
                             <% 
-                                List<Client> clients = (List<Client>) request.getAttribute("clients");
-                                if (clients != null && !clients.isEmpty()) {
-                                    for (int i = 0; i < clients.size(); i++) { 
-                                        Client client = clients.get(i);
+                                for (TypeCharge type : typeCharges) { 
                             %>
-                              <option value="">Directe</option>
-                              <option value="">Indirecte</option>
-                            <% %>
+                              <option value="<%= type.getId()%>"><%= type.getNom()%></option>
+                            <% } %>
                             </select>
                           </div>
                         </div>
@@ -60,12 +62,14 @@
                     <div class="row">
                       <div class="col-md-6">
                         <div class="form-group row">
-                          <label name="" class="col-sm-3 col-form-label">Charges</label>
+                          <label name="" class="col-sm-3 col-form-label">Charge Analytique</label>
                           <div class="col-sm-9">
-                            <select class="form-control">
-                              <option>incorporable</option>
-                              <option>non incorporable</option>
-                              <option>suplétives</option>
+                            <select class="form-control" name="id_charge_analytique">
+                              <% 
+                                for (ChargeAnalytique chargeAnalytique : chargeAnalytiques) { 
+                            %>
+                              <option value="<%= chargeAnalytique.getId()%>"><%= chargeAnalytique.getNom()%></option>
+                            <% } %>
                             </select>
                           </div>
                         </div>
@@ -74,20 +78,13 @@
                         <div class="form-group row">
                           <label class="col-sm-3 col-form-label">Analyse des coûts</label>
                           <div class="col-sm-4">
-                            <div class="form-check">
-                              <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="" id="membershipRadios1" value="">
-                                Variable
-                              </label>
-                            </div>
-                          </div>
-                          <div class="col-sm-5">
-                            <div class="form-check">
-                              <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="" id="membershipRadios2" value="">
-                                Fixe
-                              </label>
-                            </div>
+                          <select class="form-control" name="id_analytique_coût">
+                            <% 
+                                for (AnalytiqueDesCouts analytiqueDesCout : analytiqueDesCouts) { 
+                            %>
+                              <option value="<%= analytiqueDesCout.getId()%>"><%= analytiqueDesCout.getNom()%></option>
+                            <% } %>
+                            </select>
                           </div>
                         </div>
                       </div>
@@ -100,7 +97,7 @@
                         <div class="form-group row">
                           <label class="col-sm-3 col-form-label">Démarage</label>
                           <div class="col-sm-9">
-                            <input type="number" name="" class="form-control" />
+                            <input type="number" name="pourcentage_démarrage" class="form-control" />
                           </div>
                         </div>
                       </div>
@@ -111,7 +108,7 @@
                         <div class="form-group row">
                           <label class="col-sm-3 col-form-label">Transition</label>
                           <div class="col-sm-9">
-                            <input type="number" name="" class="form-control" />
+                            <input type="number" name="pourcentage_transition" class="form-control" />
                           </div>
                         </div>
                       </div>
@@ -122,7 +119,7 @@
                         <div class="form-group row">
                           <label class="col-sm-3 col-form-label">Finition</label>
                           <div class="col-sm-9">
-                            <input type="number" name="" class="form-control" />
+                            <input type="number" name="pourcentage_finition" class="form-control" />
                           </div>
                         </div>
                       </div>
