@@ -1,22 +1,16 @@
 package controller;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.PrintWriter;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 
 import dao.PouletDAO;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import jakarta.servlet.http.Part;
 import util.Poulet;
 
-public class TraitemenetPouler extends HttpServlet {
+public class TraitementCharge {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
@@ -55,5 +49,4 @@ public class TraitemenetPouler extends HttpServlet {
         }
         
     }
-
 }
