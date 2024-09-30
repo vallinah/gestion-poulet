@@ -1,4 +1,5 @@
 package connexion;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -8,8 +9,8 @@ public class Connexion {
     // Informations de connexion à PostgreSQL
     private static final String URL = "jdbc:postgresql://localhost:5432/poulailler";
     private static final String USER = "postgres";
-    private static final String PASSWORD = "fifaliana";
-    
+    private static final String PASSWORD = "hery";
+
     // Variable pour stocker la connexion
     private Connection connection;
 
@@ -18,7 +19,7 @@ public class Connexion {
         try {
             // Charger le driver PostgreSQL
             Class.forName("org.postgresql.Driver");
-            
+
             // Établir la connexion
             connection = DriverManager.getConnection(URL, USER, PASSWORD);
             System.out.println("Connexion à la base de données réussie.");
