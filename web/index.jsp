@@ -36,7 +36,7 @@
       <%@include file="partials/_sidebar.jsp"%>
       <!-- partial -->
       <div class="main-panel">
-        <%@include file="pages/forms/insertCharge.jsp"%>
+        <%@include file="pages/forms/insertPoulet.jsp"%>
         <!-- content-wrapper ends -->
         <!-- partial:partials/_footer.html -->
          <%@include file="partials/_footer.jsp"%>
