@@ -1,3 +1,5 @@
+drop database if exists poulailler;
+
 CREATE DATABASE poulailler;
 \c poulailler;
 
@@ -24,12 +26,30 @@ insert into analytique_des_coûts(nom) values('variable');
 insert into analytique_des_coûts(nom) values('fixe');
 insert into analytique_des_coûts(nom) values('totale');
 
+CREATE TABLE charge(
+    id serial PRIMARY KEY,
+    nom VARCHAR (250),
+    prix_unitaire DECIMAL(18, 2),
+    unité_oeuvre VARCHAR (250),
+    id_type_charge int REFERENCES type_charge(id),
+    id_charge_analytique int REFERENCES charge_analytique(id),
+    id_analytique_coût int REFERENCES analytique_des_coûts(id),
+    pourcentage_démarrage DECIMAL(18, 2),
+    pourcentage_transition DECIMAL(18, 2),
+    pourcentage_finition DECIMAL(18, 2)
+);
 
 
-CREATE TABLE dépense(
+CREATE TABLE depense(
     id serial PRIMARY KEY,
     id_charge int REFERENCES charge(id),
-    quantité DECIMAL(10, 2)
+    quantite DECIMAL(18, 2)
+);
+
+CREATE TABLE elevage (
+    id SERIAL PRIMARY KEY,
+    date_debut DATE NOT NULL,
+    dureeCycle INT NOT NULL
 );
 
 CREATE TABLE poulet (
@@ -43,21 +63,6 @@ CREATE TABLE poulet (
 );
 
 
-CREATE TABLE charge(
-    id serial PRIMARY KEY,
-    nom VARCHAR (250),
-    prix_unitaire DECIMAL(10, 2),
-    unité_oeuvre VARCHAR (250),
-    id_type_charge int REFERENCES type_charge(id),
-    id_charge_analytique int REFERENCES charge_analytique(id),
-    id_analytique_coût int REFERENCES analytique_des_coûts(id),
-    pourcentage_démarrage DECIMAL(10, 2),
-    pourcentage_transition DECIMAL(10, 2),
-    pourcentage_finition DECIMAL(10, 2)
-);
 
-CREATE TABLE elevage (
-    id SERIAL PRIMARY KEY,
-    date_debut DATE NOT NULL,
-    dureeCycle INT NOT NULL
-);
+
+

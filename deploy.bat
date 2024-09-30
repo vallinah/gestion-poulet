@@ -54,8 +54,8 @@ javac -cp "%local%\temp\WEB-INF\lib\*" -d "%local%\temp\WEB-INF\classes" "%local
 jar cvf "%local%\%name%.war" -C "%local%\temp" .
 move "%local%\%name%.war" "%webapps%"
 
-rmdir /s /q "%local%\temp"
-rmdir /s /q "%local%\out"
+@REM rmdir /s /q "%local%\temp"
+@REM rmdir /s /q "%local%\out"
 
 
 
