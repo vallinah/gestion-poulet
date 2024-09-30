@@ -1,33 +1,26 @@
 package controller;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.PrintWriter;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 
 import dao.PouletDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-import jakarta.servlet.http.Part;
 import util.Poulet;
 
 public class TraitemenetPouler extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            
+
         } catch (Exception e) {
         }
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
         PrintWriter out = response.getWriter();
         try {
             double poidsInitial = Double.parseDouble(request.getParameter("poidsInitial"));
@@ -37,9 +30,8 @@ public class TraitemenetPouler extends HttpServlet {
             double cout = Double.parseDouble(request.getParameter("cout"));
             PouletDAO dao = new PouletDAO();
 
-
             Poulet poulet = new Poulet(0, poidsInitial, poidsFinal, poidsGrow, prixDeVente, cout);
-    
+
             // Vérification de l'action à effectuer
             if (request.getParameter("pouletId") != null) {
                 poulet.setId(Integer.parseInt((String) request.getParameter("pouletId")));
@@ -47,13 +39,13 @@ public class TraitemenetPouler extends HttpServlet {
             } else {
                 dao.insert(poulet);
             }
-            request.getRequestDispatcher("insertPoulet.jsp"); 
-    
-           // Redirection vers la page des clients après traitement
+            request.getRequestDispatcher("insertPoulet.jsp");
+
+            // Redirection vers la page des clients après traitement
         } catch (Exception e) {
             out.print(e.getMessage());
         }
-        
+
     }
 
 }
