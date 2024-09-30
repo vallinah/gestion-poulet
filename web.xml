@@ -15,6 +15,16 @@
         <url-pattern>/getCharge</url-pattern>
     </servlet-mapping>
 
+    <!-- Configuration du servlet pour Book -->
+    <servlet>
+        <servlet-name>GetElevage</servlet-name>
+        <servlet-class>controller.GetElevage</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetElevage</servlet-name>
+        <url-pattern>/getCharge</url-pattern>
+    </servlet-mapping>
+
        <!-- Configuration du servlet pour Book -->
     <servlet>
         <servlet-name>TraitementPoulet</servlet-name>
