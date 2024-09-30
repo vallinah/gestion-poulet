@@ -14,16 +14,16 @@
             </a>
             <div class="collapse" id="form-elements">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"><a class="nav-link" href="pages/forms/basic_elements.html">Charge</a></li>
-                <li class="nav-item"><a class="nav-link" href="pages/forms/basic_elements.html">Coût</a></li>
-                <li class="nav-item"><a class="nav-link" href="pages/forms/basic_elements.html">Poulet</a></li>
+                <li class="nav-item"><a class="nav-link" href="/getCharge">Charge</a></li>
+                <li class="nav-item"><a class="nav-link" href="web\pages\forms\insertCout.jsp">Coût</a></li>
+                <li class="nav-item"><a class="nav-link" href="web\pages\forms\insertPoulet.jsp">Poulet</a></li>
               </ul>
             </div>
           </li>
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#tables" aria-expanded="false" aria-controls="tables">
               <i class="icon-grid-2 menu-icon"></i>
-              <span class="menu-title">Resultat</span>
+              <span class="menu-title">Resultats</span>
               <i class="menu-arrow"></i>
             </a>
           </li>
