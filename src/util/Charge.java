@@ -33,6 +33,23 @@ public class Charge {
         this.pourcentageFinition = pourcentageFinition;
     }
 
+    @Override
+public String toString() {
+    return "Charge{" +
+            "id=" + id +
+            ", nom='" + nom + '\'' +
+            ", prixUnitaire=" + prixUnitaire +
+            ", uniteOeuvre='" + uniteOeuvre + '\'' +
+            ", idTypeCharge=" + (idTypeCharge != null ? idTypeCharge.getNom() : "null") +
+            ", idChargeAnalytique=" + (idChargeAnalytique != null ? idChargeAnalytique.getNom() : "null") +
+            ", idAnalytiqueCout=" + (idAnalytiqueCout != null ? idAnalytiqueCout.getNom() : "null") +
+            ", pourcentageDemarrage=" + pourcentageDemarrage +
+            ", pourcentageTransition=" + pourcentageTransition +
+            ", pourcentageFinition=" + pourcentageFinition +
+            '}';
+}
+
+
     // Getters et Setters
     public int getId() {
         return id;

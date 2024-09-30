@@ -9,13 +9,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Skydash Admin</title>
   <!-- plugins:css -->
-  <link rel="stylesheet" href="vendors/feather/feather.css">
-  <link rel="stylesheet" href="vendors/ti-icons/css/themify-icons.css">
-  <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css">
+  <link rel="stylesheet" href="../../vendors/feather/feather.css">
+  <link rel="stylesheet" href="../../vendors/ti-icons/css/themify-icons.css">
+  <link rel="stylesheet" href="../../vendors/css/vendor.bundle.base.css">
   <!-- endinject -->
   <!-- Plugin css for this page -->
-  <link rel="stylesheet" href="vendors/datatables.net-bs4/dataTables.bootstrap4.css">
-  <link rel="stylesheet" href="vendors/ti-icons/css/themify-icons.css">
+  <link rel="stylesheet" href="../../vendors/datatables.net-bs4/dataTables.bootstrap4.css">
+  <link rel="stylesheet" href="../../vendors/ti-icons/css/themify-icons.css">
   <link rel="stylesheet" type="text/css" href="js/select.dataTables.min.css">
   <!-- End plugin css for this page -->
   <!-- inject:css -->
@@ -25,17 +25,17 @@
 </head>
 <body>
   <div class="container-scroller">
-    <!-- partial:partials/_navbar.html -->
-    <%@include file="partials/_navbar.jsp"%>
+    <!-- partial:../../partials/_navbar.html -->
+    <%@include file="../../partials/_navbar.jsp"%>
     <!-- partial -->
 
     <div class="container-fluid page-body-wrapper">
-      <!-- partial:partials/_settings-panel.html -->
-      <%@include file="partials/_settings-panel.jsp"%>
+      <!-- partial:../../partials/_settings-panel.html -->
+      <%@include file="../../partials/_settings-panel.jsp"%>
       <!-- partial -->
 
-      <!-- partial:partials/_sidebar.html -->
-      <%@include file="partials/_sidebar.jsp"%>
+      <!-- partial:../../partials/_sidebar.html -->
+      <%@include file="../../partials/_sidebar.jsp"%>
       <!-- partial -->
       <div class="main-panel">
 <div class="content-wrapper">
@@ -120,8 +120,8 @@
         </div>
         
         <!-- content-wrapper ends -->
-        <!-- partial:partials/_footer.html -->
-         <%@include file="partials/_footer.jsp"%>
+        <!-- partial:../../partials/_footer.html -->
+         <%@include file="../../partials/_footer.jsp"%>
         <!-- partial -->
       </div>
       <!-- main-panel ends -->
@@ -131,12 +131,12 @@
   <!-- container-scroller -->
 
   <!-- plugins:js -->
-  <script src="vendors/js/vendor.bundle.base.js"></script>
+  <script src="../../vendors/js/vendor.bundle.base.js"></script>
   <!-- endinject -->
   <!-- Plugin js for this page -->
-  <script src="vendors/chart.js/Chart.min.js"></script>
-  <script src="vendors/datatables.net/jquery.dataTables.js"></script>
-  <script src="vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+  <script src="../../vendors/chart.js/Chart.min.js"></script>
+  <script src="../../vendors/datatables.net/jquery.dataTables.js"></script>
+  <script src="../../vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
   <script src="js/dataTables.select.min.js"></script>
 
   <!-- End plugin js for this page -->

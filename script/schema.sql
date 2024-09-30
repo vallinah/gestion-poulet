@@ -9,7 +9,7 @@ CREATE TABLE type_charge(
 );
 insert into type_charge(nom) values('charge incorporable');
 insert into type_charge(nom) values('charge non incorporable');
-insert into type_charge(nom) values('charge supplétive');
+insert into type_charge(nom) values('charge suppletive');
 
 CREATE TABLE charge_analytique(
     id serial PRIMARY KEY,
@@ -18,23 +18,23 @@ CREATE TABLE charge_analytique(
 insert into charge_analytique(nom) values('charge directe');
 insert into charge_analytique(nom) values('charge indirecte');
 
-CREATE TABLE analytique_des_coûts(
+CREATE TABLE analytique_des_couts(
     id serial PRIMARY KEY,
     nom VARCHAR (250)
 );
-insert into analytique_des_coûts(nom) values('variable');
-insert into analytique_des_coûts(nom) values('fixe');
-insert into analytique_des_coûts(nom) values('totale');
+insert into analytique_des_couts(nom) values('variable');
+insert into analytique_des_couts(nom) values('fixe');
+insert into analytique_des_couts(nom) values('totale');
 
 CREATE TABLE charge(
     id serial PRIMARY KEY,
     nom VARCHAR (250),
     prix_unitaire DECIMAL(18, 2),
-    unité_oeuvre VARCHAR (250),
+    unite_oeuvre VARCHAR (250),
     id_type_charge int REFERENCES type_charge(id),
     id_charge_analytique int REFERENCES charge_analytique(id),
-    id_analytique_coût int REFERENCES analytique_des_coûts(id),
-    pourcentage_démarrage DECIMAL(18, 2),
+    id_analytique_cout int REFERENCES analytique_des_couts(id),
+    pourcentage_demarrage DECIMAL(18, 2),
     pourcentage_transition DECIMAL(18, 2),
     pourcentage_finition DECIMAL(18, 2)
 );
@@ -59,7 +59,7 @@ CREATE TABLE poulet (
     poids_grow DECIMAL(10, 2),
     prix_de_vente DECIMAL(10, 2),
     cout DECIMAL(10, 2),
-    id_elevage INT REFERENCES elevage(id) -- Clé étrangère vers la table elevage
+    id_elevage INT REFERENCES elevage(id) -- Cle etrangère vers la table elevage
 );
 
 

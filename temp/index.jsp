@@ -38,7 +38,7 @@
       <%@include file="partials/_sidebar.jsp"%>
       <!-- partial -->
       <div class="main-panel">
-        <%@include file="pages/tables/basic-table.jsp"%>
+        <%-- <%@include file="pages/tables/basic-table.jsp"%> --%>
         <!-- content-wrapper ends -->
         <!-- partial:partials/_footer.html -->
          <%@include file="partials/_footer.jsp"%>

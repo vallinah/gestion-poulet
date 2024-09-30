@@ -10,10 +10,10 @@ public class ChargeDAO {
 
     private Connexion connexion = new Connexion();
 
-    // Méthode pour insérer une nouvelle charge
+    // Methode pour inserer une nouvelle charge
     public void insert(Charge charge) {
         Connection conn = connexion.getConnection();
-        String sql = "INSERT INTO charge(nom, prix_unitaire, unité_oeuvre, id_type_charge, id_charge_analytique, id_analytique_coût, pourcentage_démarrage, pourcentage_transition, pourcentage_finition) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO charge(nom, prix_unitaire, unite_oeuvre, id_type_charge, id_charge_analytique, id_analytique_cout, pourcentage_demarrage, pourcentage_transition, pourcentage_finition) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, charge.getNom());
             stmt.setDouble(2, charge.getPrixUnitaire());
@@ -26,7 +26,7 @@ public class ChargeDAO {
             stmt.setDouble(9, charge.getPourcentageFinition());
 
             stmt.executeUpdate();
-            System.out.println("Charge insérée avec succès.");
+            System.out.println("Charge inseree avec succès.");
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -34,10 +34,10 @@ public class ChargeDAO {
         }
     }
 
-    // Méthode pour mettre à jour une charge existante
+    // Methode pour mettre à jour une charge existante
     public void update(Charge charge) {
         Connection conn = connexion.getConnection();
-        String sql = "UPDATE charge SET nom=?, prix_unitaire=?, unité_oeuvre=?, id_type_charge=?, id_charge_analytique=?, id_analytique_coût=?, pourcentage_démarrage=?, pourcentage_transition=?, pourcentage_finition=? WHERE id=?";
+        String sql = "UPDATE charge SET nom=?, prix_unitaire=?, unite_oeuvre=?, id_type_charge=?, id_charge_analytique=?, id_analytique_cout=?, pourcentage_demarrage=?, pourcentage_transition=?, pourcentage_finition=? WHERE id=?";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, charge.getNom());
             stmt.setDouble(2, charge.getPrixUnitaire());
@@ -59,14 +59,14 @@ public class ChargeDAO {
         }
     }
 
-    // Méthode pour supprimer une charge par ID
+    // Methode pour supprimer une charge par ID
     public void delete(int id) {
         Connection conn = connexion.getConnection();
         String sql = "DELETE FROM charge WHERE id=?";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, id);
             stmt.executeUpdate();
-            System.out.println("Charge supprimée avec succès.");
+            System.out.println("Charge supprimee avec succès.");
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -74,7 +74,7 @@ public class ChargeDAO {
         }
     }
 
-    // Méthode pour récupérer toutes les charges
+    // Methode pour recuperer toutes les charges
     public List<Charge> getAll() {
         List<Charge> charges = new ArrayList<>();
         Connection conn = connexion.getConnection();
@@ -86,11 +86,11 @@ public class ChargeDAO {
                 charge.setId(rs.getInt("id"));
                 charge.setNom(rs.getString("nom"));
                 charge.setPrixUnitaire(rs.getDouble("prix_unitaire"));
-                charge.setUniteOeuvre(rs.getString("unité_oeuvre"));
+                charge.setUniteOeuvre(rs.getString("unite_oeuvre"));
                 charge.setIdTypeCharge(new TypeChargeDAO().getById(rs.getInt("id_type_charge")));
                 charge.setIdChargeAnalytique(new ChargeAnalytiqueDAO().getById(rs.getInt("id_charge_analytique")) );
-                charge.setIdAnalytiqueCout(new AnalytiqueDesCoutsDAO().getById( rs.getInt("id_analytique_coût")));
-                charge.setPourcentageDemarrage(rs.getDouble("pourcentage_démarrage"));
+                charge.setIdAnalytiqueCout(new AnalytiqueDesCoutsDAO().getById( rs.getInt("id_analytique_cout")));
+                charge.setPourcentageDemarrage(rs.getDouble("pourcentage_demarrage"));
                 charge.setPourcentageTransition(rs.getDouble("pourcentage_transition"));
                 charge.setPourcentageFinition(rs.getDouble("pourcentage_finition"));
 
@@ -104,7 +104,7 @@ public class ChargeDAO {
         return charges;
     }
 
-    // Méthode pour récupérer une charge par ID
+    // Methode pour recuperer une charge par ID
     public Charge getById(int id) {
         Charge charge = null;
         Connection conn = connexion.getConnection();
@@ -117,11 +117,11 @@ public class ChargeDAO {
                 charge.setId(rs.getInt("id"));
                 charge.setNom(rs.getString("nom"));
                 charge.setPrixUnitaire(rs.getDouble("prix_unitaire"));
-                charge.setUniteOeuvre(rs.getString("unité_oeuvre"));
+                charge.setUniteOeuvre(rs.getString("unite_oeuvre"));
                 charge.setIdTypeCharge(new TypeChargeDAO().getById(rs.getInt("id_type_charge")));
                 charge.setIdChargeAnalytique(new ChargeAnalytiqueDAO().getById(rs.getInt("id_charge_analytique")) );
-                charge.setIdAnalytiqueCout(new AnalytiqueDesCoutsDAO().getById( rs.getInt("id_analytique_coût")));
-                charge.setPourcentageDemarrage(rs.getDouble("pourcentage_démarrage"));
+                charge.setIdAnalytiqueCout(new AnalytiqueDesCoutsDAO().getById( rs.getInt("id_analytique_cout")));
+                charge.setPourcentageDemarrage(rs.getDouble("pourcentage_demarrage"));
                 charge.setPourcentageTransition(rs.getDouble("pourcentage_transition"));
                 charge.setPourcentageFinition(rs.getDouble("pourcentage_finition"));
             }

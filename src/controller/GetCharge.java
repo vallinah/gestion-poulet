@@ -28,18 +28,32 @@ public class GetCharge extends HttpServlet {
                         request.setAttribute("chargeAnalytique", chargeAnalytique);
                         request.setAttribute("analytiqueDesCouts", analytiqueDesCouts);
                         request.setAttribute("typeCharge", typeCharge);
-                        request.getRequestDispatcher("pages/form/insertcharge.jsp").forward(request, response);
+                        String path = "pages/forms/insertCharge.jsp";
+                        request.getRequestDispatcher(path).forward(request, response);
+
                         break;
                     case "modifier":
                         int chargeId = Integer.parseInt(request.getParameter("chargeId"));
                         Charge charge = dao.getById(chargeId);
                         request.setAttribute("charge", charge);
-                        request.getRequestDispatcher("insertcharge.jsp").forward(request, response);
+                        String paths = "/pages/forms/insertCharge.jsp";
+                        request.getRequestDispatcher(paths).forward(request, response);
+
                         break;
                     case "list":
                         List<Charge> charges = new ChargeDAO().getAll();
+                        ElevageService elevage = new ElevageService();
+                        Poulet poulet = new Poulet();
+                        double chiffre = poulet.getChiffreAffaire(Integer.parseInt(request.getParameter("idElevage")));
+                        double variable = elevage.calculMargeCouteVariable(Integer.parseInt(request.getParameter("idElevage")));
+                        double fixe = elevage.calculMargeCouteFixe(Integer.parseInt(request.getParameter("idElevage")));
+                        double marge = elevage.calculMargeGlobal(Integer.parseInt(request.getParameter("idElevage")));
                         request.setAttribute("charges", charges);
-                        request.getRequestDispatcher("basic-table.jsp").forward(request, response);
+                        request.setAttribute("chiffre", chiffre);
+                        request.setAttribute("variable", variable);
+                        request.setAttribute("fixe", fixe);
+                        request.setAttribute("marge", marge);
+                        request.getRequestDispatcher("/pages/tables/basic-table.jsp").forward(request, response);
                         break;
                     default:
                         response.sendError(HttpServletResponse.SC_BAD_REQUEST);

@@ -28,7 +28,7 @@ public class ElevageService {
         return calculerDepenseTotal(depenses) / nbPoulets;
     }
 
-    // Fonction pour calculer le coût par poulet
+    // Fonction pour calculer le cout par poulet
     public double calculerCoutParPoulet(int idElevage) {
         return calculerDepenseParPoulet(idElevage);
     }
@@ -87,5 +87,33 @@ public class ElevageService {
         Facture fact = new Facture(idElevage, prixVenteKg);
 
         return fact;
+    }
+
+    public double calculMargeGlobal(int idElevage) {
+        double margeGlobal = 0;
+        Poulet p = new Poulet();
+        double coutFixe = depenseDAO.getTotalAnalytiqueDesCouts(idElevage, "fixe");
+        double coutVariable = depenseDAO.getTotalAnalytiqueDesCouts(idElevage, "variable");
+        double chiffreAffaire = p.getChiffreAffaire(idElevage);
+        margeGlobal = chiffreAffaire - (coutFixe + coutVariable);
+        return margeGlobal;
+    }
+
+    public double calculMargeCouteFixe(int idElevage) {
+        double mcf = 0;
+        Poulet p = new Poulet();
+        double coutFixe = depenseDAO.getTotalAnalytiqueDesCouts(idElevage, "fixe");
+        double chiffreAffaire = p.getChiffreAffaire(idElevage);
+        mcf = chiffreAffaire - coutFixe;
+        return mcf;
+    }
+
+    public double calculMargeCouteVariable(int idElevage) {
+        double mcv = 0;
+        Poulet p = new Poulet();
+        double coutVariable = depenseDAO.getTotalAnalytiqueDesCouts(idElevage, "variable");
+        double chiffreAffaire = p.getChiffreAffaire(idElevage);
+        mcv = chiffreAffaire - coutVariable;
+        return mcv;
     }
 }

@@ -1,22 +1,23 @@
 package util;
 
-public class Poulet {
+import dao.PouletDAO;
+import java.util.List;
 
+public class Poulet {
     private int id;
     private double poidsInitial;
-    private double poidsFinal;
-    private double poidsGrow;
+    private Double poidsFinal; // Poids final peut être nul, donc `Double` au lieu de `double`
+    private Double poidsGrow; // Idem pour le poids de croissance
     private double prixDeVente;
     private double cout;
-
-    private int idElevage;
+    private int idElevage; // Référence à l'élevage (clé étrangère)
 
     // Constructeur par défaut
     public Poulet() {
     }
 
     // Constructeur avec paramètres
-    public Poulet(int id, double poidsInitial, double poidsFinal, double poidsGrow, double prixDeVente, double cout,
+    public Poulet(int id, double poidsInitial, Double poidsFinal, Double poidsGrow, double prixDeVente, double cout,
             int idElevage) {
         this.id = id;
         this.poidsInitial = poidsInitial;
@@ -24,17 +25,10 @@ public class Poulet {
         this.poidsGrow = poidsGrow;
         this.prixDeVente = prixDeVente;
         this.cout = cout;
+        this.idElevage = idElevage;
     }
 
     // Getters et Setters
-    public int getIdElevage() {
-        return idElevage;
-    }
-
-    public void setIdElevage(int id) {
-        this.idElevage = id;
-    }
-
     public int getId() {
         return id;
     }
@@ -51,19 +45,19 @@ public class Poulet {
         this.poidsInitial = poidsInitial;
     }
 
-    public double getPoidsFinal() {
+    public Double getPoidsFinal() {
         return poidsFinal;
     }
 
-    public void setPoidsFinal(double poidsFinal) {
+    public void setPoidsFinal(Double poidsFinal) {
         this.poidsFinal = poidsFinal;
     }
 
-    public double getPoidsGrow() {
+    public Double getPoidsGrow() {
         return poidsGrow;
     }
 
-    public void setPoidsGrow(double poidsGrow) {
+    public void setPoidsGrow(Double poidsGrow) {
         this.poidsGrow = poidsGrow;
     }
 
@@ -83,4 +77,21 @@ public class Poulet {
         this.cout = cout;
     }
 
+    public int getIdElevage() {
+        return idElevage;
+    }
+
+    public void setIdElevage(int idElevage) {
+        this.idElevage = idElevage;
+    }
+
+    public double getChiffreAffaire(int id_elevage) {
+        PouletDAO pd = new PouletDAO();
+        double cf = 0;
+        List<Poulet> poultes = pd.getPouletsByElevage(id_elevage);
+        for (Poulet poulet : poultes) {
+            cf += poulet.getPrixDeVente();
+        }
+        return cf;
+    }
 }

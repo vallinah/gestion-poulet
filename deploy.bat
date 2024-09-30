@@ -1,61 +1,59 @@
 @echo off
+setlocal enabledelayedexpansion
 
-set "working_dir=."
-set "local=."
-set "webapps=C:\Program Files\Apache Software Foundation\Tomcat 10.1\webapps"
-set "name=gestion-poulet"
+:: Déclaration des variables
+set "work_dir=."
+set "temp=%work_dir%\temp"
+set "web=%work_dir%\web"
+set "web_xml=%work_dir%\web.xml"
+set "lib=%work_dir%\lib"
+set "web_apps=C:\Program Files\Apache Software Foundation\Tomcat 10.1\webapps"
+set "war_name=gestion-poulet"
+set "src=%work_dir%\src"
 
-if "%working_dir%"=="" (
-    echo Le lien vers le répertoire de travail est vide.
-    goto :EOF
-)
-if "%local%"=="" (
-    echo Le lien vers le dossier temporaire est vide.
-    goto :EOF
-)
-if "%webapps%"=="" (
-    echo Le lien vers les webapps est vide.
-    goto :EOF
-)
-if "%name%"=="" (
-    echo Le lien vers les name est vide.
-    goto :EOF
+:: Effacer le dossier [temp]
+if exist "%temp%" (
+    rd /s /q "%temp%"
 )
 
-REM Supprimer le dossier temporaire s'il existe déjà
-if exist "%local%\temp" (
-    rmdir /s /q "%local%\temp"
+:: Créer la structure de dossier
+mkdir "%temp%\WEB-INF\lib"
+mkdir "%temp%\WEB-INF\classes"
+
+:: Copier le contenu de [web] dans [temp]
+xcopy /s /y "%web%\*.*" "%temp%"
+
+:: Copier le fichier [web_xml] vers [temp] + "\WEB-INF"
+copy "%web_xml%" "%temp%\WEB-INF"
+
+:: Copier les fichiers .jar dans [lib] vers [temp] + "\WEB-INF\lib"
+xcopy /s /i "%lib%\*.jar" "%temp%\WEB-INF\lib"
+
+:: Copier la structure de dossier de src dans WEB-INF/classes
+xcopy /t /e "%src%" "%temp%\WEB-INF\classes"
+
+:: Compilation des fichiers .java dans src avec les options suivantes
+:: Note: Assurez-vous que le chemin vers le compilateur Java (javac) est correctement configuré dans votre variable d'environnement PATH.
+:: Créer une liste de tous les fichiers .java dans le répertoire src et ses sous-répertoires
+dir /s /B "%src%\*.java" > sources.txt
+:: Exécuter la commande javac
+javac -d "%temp%\WEB-INF\classes" -cp "%lib%\*" @sources.txt
+:: Supprimer le fichiers sources.txt après la compilation
+del sources.txt
+
+:: Créer un fichier .war nommé [war_name].war à partir du dossier [temp] et son contenu dans le dossier [work_dir]
+cd "%temp%"
+jar cf "%work_dir%\%war_name%.war" *
+
+:: Effacer le fichier .war dans [web_apps] s'il existe
+if exist "%web_apps%\%war_name%.war" (
+    del /f /q "%web_apps%\%war_name%.war"
 )
 
-if exist "%local%\out" (
-    rmdir /s /q "%local%\out"
-)
+:: Copier le fichier .war vers [web_apps]
+copy /y "%work_dir%\%war_name%.war" "%web_apps%"
 
-REM Créer un nouveau dossier temporaire dans le dossier local
-mkdir "%local%\temp"
-mkdir "%local%\temp\WEB-INF"
-mkdir "%local%\temp\WEB-INF\classes"
-mkdir "%local%\temp\WEB-INF\lib"
+del "%work_dir%\%war_name%.war"
 
-mkdir "%local%\out"
-
-REM Copier les fichiers et répertoires depuis working_dir vers temp
-xcopy /s /e /q "%working_dir%\web\*" "%local%\temp\"
-copy "%working_dir%\*.xml" "%local%\temp\WEB-INF"
-
-REM Copier le contenu du répertoire lib vers temp/WEB-INF/lib
-copy "%working_dir%\lib\*" "%local%\temp\WEB-INF\lib"
-
-for /r "%working_dir%\src" %%f in (*.java) do copy "%%f" "%local%\out"
-
-REM Compiler toute les classe en specifiant le classpath
-javac -cp "%local%\temp\WEB-INF\lib\*" -d "%local%\temp\WEB-INF\classes" "%local%\out\*.java"
-
-jar cvf "%local%\%name%.war" -C "%local%\temp" .
-move "%local%\%name%.war" "%webapps%"
-
-@REM rmdir /s /q "%local%\temp"
-@REM rmdir /s /q "%local%\out"
-
-
-
+echo Déploiement terminé.
+pause

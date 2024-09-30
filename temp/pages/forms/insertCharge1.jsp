@@ -2,7 +2,6 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@page import="util.*"%>
-<%@page import="dao.*"%>
 
 <% 
   List<ChargeAnalytique> chargeAnalytiques = (List<ChargeAnalytique>) request.getAttribute("chargeAnalytique");
@@ -14,12 +13,13 @@
       out.println("Aucune charge analytique disponible.");
   }
   if (analytiqueDesCouts == null || analytiqueDesCouts.isEmpty()) {
-      out.println("Aucune analytique des coûts disponible.");
+      out.println("Aucune analytique des couts disponible.");
   }
   if (typeCharges == null || typeCharges.isEmpty()) {
       out.println("Aucun type de charge disponible.");
   }
 %>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -487,9 +487,9 @@
                       </div>
                       <div class="col-md-6">
                         <div class="form-group row">
-                          <label class="col-sm-3 col-form-label">Analyse des coûts</label>
+                          <label class="col-sm-3 col-form-label">Analyse des couts</label>
                           <div class="col-sm-4">
-                          <select class="form-control" name="id_analytique_coût">
+                          <select class="form-control" name="id_analytique_cout">
                             <% 
                                 for (AnalytiqueDesCouts analytiqueDesCout : analytiqueDesCouts) { 
                             %>
@@ -554,25 +554,31 @@
     <!-- page-body-wrapper ends -->
   </div>
   <!-- container-scroller -->
+
   <!-- plugins:js -->
   <script src="../../vendors/js/vendor.bundle.base.js"></script>
   <!-- endinject -->
   <!-- Plugin js for this page -->
-  <script src="../../vendors/typeahead.js/typeahead.bundle.min.js"></script>
-  <script src="../../vendors/select2/select2.min.js"></script>
+  <script src="../../vendors/chart.js/Chart.min.js"></script>
+  <script src="../../vendors/datatables.net/jquery.dataTables.js"></script>
+  <script src="../../vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+  <script src="js/dataTables.select.min.js"></script>
+
   <!-- End plugin js for this page -->
   <!-- inject:js -->
-  <script src="../../js/off-canvas.js"></script>
-  <script src="../../js/hoverable-collapse.js"></script>
-  <script src="../../js/template.js"></script>
-  <script src="../../js/settings.js"></script>
-  <script src="../../js/todolist.js"></script>
+  <script src="js/off-canvas.js"></script>
+  <script src="js/hoverable-collapse.js"></script>
+  <script src="js/template.js"></script>
+  <script src="js/settings.js"></script>
+  <script src="js/format.js"></script>
+  <script src="js/todolist.js"></script>
   <!-- endinject -->
   <!-- Custom js for this page-->
-  <script src="../../js/file-upload.js"></script>
-  <script src="../../js/typeahead.js"></script>
-  <script src="../../js/select2.js"></script>
+  <script src="js/dashboard.js"></script>
+  <script src="js/Chart.roundedBarCharts.js"></script>
   <!-- End custom js for this page-->
 </body>
 
 </html>
+
+s
