@@ -1,78 +1,48 @@
-
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Skydash Admin</title>
-  <!-- plugins:css -->
-  <link rel="stylesheet" href="vendors/feather/feather.css">
-  <link rel="stylesheet" href="vendors/ti-icons/css/themify-icons.css">
-  <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css">
-  <!-- endinject -->
-  <!-- Plugin css for this page -->
-  <link rel="stylesheet" href="vendors/datatables.net-bs4/dataTables.bootstrap4.css">
-  <link rel="stylesheet" href="vendors/ti-icons/css/themify-icons.css">
-  <link rel="stylesheet" type="text/css" href="js/select.dataTables.min.css">
-  <!-- End plugin css for this page -->
-  <!-- inject:css -->
-  <link rel="stylesheet" href="css/vertical-layout-light/style.css">
-  <!-- endinject -->
-  <link rel="shortcut icon" href="images/favicon.png" />
+  <meta charset="UTF-8">
+  <title>Votre Application JSP</title>
+  <!-- Ajoutez vos liens CSS ici, par exemple Bootstrap -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
+
 <body>
   <div class="container-scroller">
-    <!-- partial:partials/_navbar.html -->
-    <%@include file="partials/_navbar.jsp"%>
-    <!-- partial -->
+    <!-- Partial: _navbar.jsp -->
+    <%@ include file="partials/_navbar.jsp" %>
+    <!-- Fin du Partial -->
 
     <div class="container-fluid page-body-wrapper">
-      <!-- partial:partials/_settings-panel.html -->
-      <%@include file="partials/_settings-panel.jsp"%>
-      <!-- partial -->
+      <!-- Partial: _settings-panel.jsp -->
+      <%@ include file="partials/_settings-panel.jsp" %>
+      <!-- Fin du Partial -->
 
-      <!-- partial:partials/_sidebar.html -->
-      <%@include file="partials/_sidebar.jsp"%>
-      <!-- partial -->
+      <!-- Partial: _sidebar.jsp -->
+      <%@ include file="partials/_sidebar.jsp" %>
+      <!-- Fin du Partial -->
+
       <div class="main-panel">
-        <%-- <%@include file="pages/tables/basic-table.jsp"%> --%>
-        <!-- content-wrapper ends -->
-        <!-- partial:partials/_footer.html -->
-         <%@include file="partials/_footer.jsp"%>
-        <!-- partial -->
+        <!-- Votre contenu principal ici -->
+        <div class="content">
+          <h1>Bienvenue sur Gestion de poulet</h1>
+          <p>Contenu de la page principale.</p>
+        </div>
+
+        <!-- Partial: _footer.jsp -->
+        <%@ include file="partials/_footer.jsp" %>
+        <!-- Fin du Partial -->
       </div>
-      <!-- main-panel ends -->
-    </div>   
-    <!-- page-body-wrapper ends -->
+      <!-- Fin de main-panel -->
+    </div>
+    <!-- Fin de page-body-wrapper -->
   </div>
-  <!-- container-scroller -->
+  <!-- Fin de container-scroller -->
 
-  <!-- plugins:js -->
-  <script src="vendors/js/vendor.bundle.base.js"></script>
-  <!-- endinject -->
-  <!-- Plugin js for this page -->
-  <script src="vendors/chart.js/Chart.min.js"></script>
-  <script src="vendors/datatables.net/jquery.dataTables.js"></script>
-  <script src="vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
-  <script src="js/dataTables.select.min.js"></script>
-
-  <!-- End plugin js for this page -->
-  <!-- inject:js -->
-  <script src="js/off-canvas.js"></script>
-  <script src="js/hoverable-collapse.js"></script>
-  <script src="js/template.js"></script>
-  <script src="js/settings.js"></script>
-  <script src="js/format.js"></script>
-  <script src="js/todolist.js"></script>
-  <!-- endinject -->
-  <!-- Custom js for this page-->
-  <script src="js/dashboard.js"></script>
-  <script src="js/Chart.roundedBarCharts.js"></script>
-  <!-- End custom js for this page-->
+  <!-- Ajoutez vos scripts JS ici, par exemple jQuery et Bootstrap -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
-
